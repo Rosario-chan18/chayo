@@ -1,0 +1,459 @@
+<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Impacto de las Redes Sociales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+        
+            --primary-color: #E1306C;  
+            --secondary-color: #1DA1F2; 
+            --accent-color: #4267B2;    
+            --youtube-red: #FF0000;     
+            --linkedin-blue: #0077B5;   
+            
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-dark: rgba(0, 0, 0, 0.85);
+        }
+
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-image: url('img/71_El_Lenguaje_Coloquial_De_Las_Redes-1024x819.png');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-top: 70px;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 15px 20px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            background-color: rgba(66, 103, 178, 0.7); 
+        }
+
+        .nav-brand {
+            grid-column: 2;
+            text-align: center;
+            font-family:'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 1.6em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            justify-self: end;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration:none;
+            margin-left: 20px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        h1 {
+        text-align: center;
+        font-size: 2.8em;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, #f73838, hsl(0, 0%, 0%));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: var(--text-light);
+            margin: 20px 0;
+            font-family:'Times New Roman', Times, serif;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            padding: 20px;
+            color: var(--text-light);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .opciones {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .opcion {
+            font-family: 'Montserrat', sans-serif;
+            background-color: rgba(225, 48, 108, 0.8); 
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
+        }
+
+        .opcion:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background-color: rgba(225, 48, 108, 0.9);
+        }
+
+        .active {
+            background-color: rgba(66, 103, 178, 0.9); 
+        }
+
+        .contenido {
+            display: none;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: fadeInUp 0.6s ease-out;
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: var(--text-light);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .contenido ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .contenido li {
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .contenido strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(66, 103, 178, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 250px;
+            backdrop-filter: blur(3px);
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .audio-info {
+            font-size: 12px;
+            text-align: center;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            backdrop-filter: blur(3px);
+        }
+
+        .social-links {
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 15px;
+            
+            }
+            .opciones {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .opcion {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .audio-player {
+                width: calc(100% - 40px);
+                left: 20px;
+                right: 20px;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <nav class="navbar">
+        <div class="nav-brand">EL IMPACTO DE LAS REDES SOCIALES</div>
+        <div class="nav-links">
+            <a href="#contenido-que-son">Inicio</a>
+        </div>
+    </nav>
+
+   
+    <div class="container">
+
+        <h1>¡BIENVENIDOS!</h1>
+        
+        <div class="intro">
+            Explora con nosotros cómo las plataformas digitales han transformado nuestra forma de comunicarnos, 
+            trabajar y relacionarnos. En este espacio analizaremos tanto los beneficios como los desafíos 
+            que presentan las redes sociales en nuestra sociedad actual.
+        </div>
+       
+        
+        <div class="opciones">
+            <button class="opcion active" id="btnQueSon">📱 ¿Qué son?</button>
+            <button class="opcion" id="btnImpacto">💥 Impacto</button>
+            <button class="opcion" id="btnVentaja">✅ Ventajas</button>
+            <button class="opcion" id="btnDesventaja">❌ Desventajas</button>
+            <button class="opcion" id="btnEducacion">👍Para que se utilizan y uso</button>
+        </div>
+
+        <div id="contenido-que-son" class="contenido" style="display: block;">
+            <h2>¿Qué son las redes sociales?</h2>
+            <p>Las redes sociales son plataformas digitales formadas por comunidades de individuos con intereses, actividades o relaciones en común (como amistad, parentesco, trabajo). Las redes sociales permiten el contacto entre personas y funcionan como un medio para comunicarse e intercambiar información.Los individuos no necesariamente se tienen que conocer antes de entrar en contacto a través de una red social, sino que pueden hacerlo a través de ella, y ese es uno de los mayores beneficios de las comunidades virtuales.</p>
+            <p>Algunos ejemplos populares incluyen Facebook, Instagram y TikTok, cada una con sus propias características y enfoques para la interacción social.</p>
+        <center>
+            <img src="img/ypoo.jpg" width="200" style="max-width: 200%; height: auto;" alt="">
+        </center>
+       <center>
+        <a href="https://concepto.de/redes-sociales/">¿Que son?</a> 
+       </center>
+        </div>
+
+        <div id="contenido-impacto" class="contenido">
+            <h2>Impacto de las redes sociales</h2>
+            <p>Las redes sociales han tenido un impacto profundo en la sociedad moderna, afectando diversos aspectos de nuestra vida:</p>
+            <ul>
+                <li><strong>Sociales:</strong> Las redes sociales han tenido un impacto profundo en distintos aspectos de la vida moderna. En el ámbito de la comunicación, han transformado la manera en que las personas se relacionan, permitiendo una conexión instantánea y global. Hoy en día es posible enviar mensajes, realizar videollamadas o compartir información en segundos, rompiendo barreras de distancia y tiempo. Sin embargo, también tenemos que ver las cosas negativas quen han facilitado la difusión de noticias falsas y rumores, afectando la calidad de la información que consumimos. Además, han dado origen a nuevas formas de expresión a través de emoticones, memes y abreviaciones que enriquecen, pero también simplifican, el lenguaje</li>
+                <li><strong>Cultura:</strong> En el aspecto cultural, las redes sociales han impulsado la globalización cultural, permitiendo el intercambio de tradiciones, costumbres y modas de diversas partes del mundo. Esta apertura cultural, sin embargo, ha llevado en muchos casos a la homogeneización, donde las culturas locales pierden fuerza frente a las tendencias globales. No obstante, también han servido como herramienta para preservar y difundir lenguas y prácticas culturales que podrían haberse perdido. Asimismo, en el mundo digital, surgen nuevas identidades y subculturas que reflejan la diversidad de intereses y formas de vida contemporáneas.</li>
+                <li><strong>Política:</strong> En el ámbito político, las redes sociales han revolucionado la manera en que se difunden las ideas y se organiza la participación ciudadana. Hoy en día, políticos, partidos y movimientos sociales utilizan las plataformas digitales para acercarse directamente al electorado, compartir propuestas, hacer campañas y responder en tiempo real a los acontecimientos. Gracias a su inmediatez, las redes permiten movilizar a grandes cantidades de personas en poco tiempo, impulsando protestas, debates y movimientos que antes habrían sido más difíciles de coordinar.</li>
+                <li><strong>Economía:</strong> Finalmente, en el aspecto económico, las redes sociales han abierto nuevas oportunidades de negocio. Han surgido profesiones como influencer, community manager y creador de contenido, que aprovechan las plataformas digitales para generar ingresos. Las empresas, grandes y pequeñas, utilizan las redes para publicitar sus productos de manera más directa y personalizada, llegando a audiencias globales con relativa facilidad. Sin embargo, esta transformación también ha profundizado las desigualdades, ya que no todas las personas tienen el mismo acceso a internet y a las herramientas digitales necesarias para participar plenamente en esta nueva economía.</li>
+                <center>
+                    <img src="img/impactoooooo9o.jpeg" width="300" style="max-width: 300%; height: auto;" alt="">
+                </center>
+            </ul>
+        </div>
+        
+        <div id="contenido-ventaja" class="contenido">
+            <h2>Ventajas de las redes sociales</h2>
+            <p>Las redes sociales ofrecen numerosos beneficios cuando se usan de manera responsable:</p>
+            <ul>
+                <li><strong>Mayor conectividad y comunicación:</strong> "Permiten a las personas mantenerse conectadas con familiares y amigos, sin importar la distancia geográfica. Facilitan la comunicación instantánea y el intercambio de información." </li>
+                <li><strong>Oportunidades profesionales:</strong> "Plataformas como LinkedIn facilitan el networking profesional, ayudando a las personas a encontrar empleo, colaborar en proyectos y expandir sus redes profesionales." </li>
+                <li><strong>Promoción de negocios:</strong> "Las empresas pueden usar redes sociales para llegar a nuevos clientes, aumentar la visibilidad de la marca y promocionar productos y servicios de manera efectiva.</li>
+                <li><strong>Movilización social y activismo:</strong> "Facilitan la organización y promoción de movimientos sociales, campañas de concienciación y acciones de activismo, permitiendo a las personas unirse para causas comunes." </li>
+                <li><strong>Acceso a información y educación:</strong> "Proporcionan acceso a una amplia gama de información, recursos educativos y noticias, manteniendo a los usuarios informados sobre los últimos acontecimientos y tendencias."</li>
+                <center>
+                    <video width="420" height="240" autoplay controls> 
+                        <source src="video/Video de WhatsApp 2025-05-05 a las 19.03.19_97f5a328.mp4">
+                    </video>
+                </center>
+            </ul>
+        </div>
+        
+        <div id="contenido-desventaja" class="contenido">
+            <h2>Desventajas de las redes sociales</h2>
+            <p>A pesar de sus beneficios, las redes sociales también presentan desafíos importantes:</p>
+            <ul>
+                <li><strong>Pueden consumir mucho de nuestro tiempo:</strong> Es muy fácil pasar horas navegando por nuestro feed de noticias o viendo vídeos sin darnos cuenta. Esto puede llevarnos a descuidar nuestro trabajo, nuestros estudios o nuestra vida personal. Así que cuida medir y moderar el tiempo que pasas en redes sociales para prevenir afectaciones relacionadas con el uso en exceso y desperdicio del tiempo.</li>
+                <li><strong>Pueden causar adicción y dependencia a ellas:</strong> Hay muchas personas que no pueden pasar un día sin consultar su cuenta de Facebook, Instagram o TikTok. O sin revisar las nuevos posteos de Snapchat. Ojo porque esto puede traer problemas graves de falta de autocontrol. Además puede provocarnos problemas en nuestras relaciones personales e incluso en nuestra vida laboral.</li>
+                <li><strong>Abren la posibilidad sufrir ciberacoso u otras formas de hostigamiento:</strong> Esto se debe principalmente a que podemos escondernos detrás de una pantalla y decir lo que queramos sin consecuencias, es decir, podemos ser completamente anónimos.
+Por desgracia, esto ha llevado a muchas personas a ser víctimas de acoso o intimidación en línea por muchos que aprovechan de más su anonimato y reparten hate a donde ven oportunidad. La peor parte es que no puedes prevenirlo, solo queda ser de coraza dura y aprender a afrontar este tipo de agresiones.</li>
+                <li><strong>Es fácil desarrollar un falso sentido de autoimportancia:</strong> Las redes sociales también pueden crear una falsa sensación de autoimportancia o "grandiosidad".
+Esto ocurre porque sólo mostramos la mejor versión de nosotros mismos en las redes sociales y tendemos a ocultar nuestros defectos e inseguridades.
+                     Lo que lleva a muchas personas a creer que su vida es perfecta y que son mejores que los demás, cuando en realidad no es así.</li>
+                <li><strong>El spam y las estafas son muy comunes:</strong>Como compartimos mucha información personal en estas plataformas, los estafadores pueden aprovecharse fácilmente de nosotros robando nuestros datos y nuestra privacidad.
+Por eso es necesario hacer mucho énfasis en lo importante de no subir contenido de más y ser extremadamente cuidadoso con lo que compartimos.</li>
+            </ul>
+        </div>
+        
+        <div id="contenido-educacion-trabajo" class="contenido">
+            <h2>Para que se utilizan y su uso </h2>
+            <p>Las redes sociales han transformado significativamente tanto el uso responsable o como el uso laboral:</p>
+            
+            <ul>
+                <li>Facilitan el aprendizaje colaborativo y a distancia.</li>
+                <li>Permiten el acceso a recursos diversos.</li>
+                <li>Revolucionaron el networking profesional</li>
+                <li>Son herramientas esenciales para el marketing digital y personal branding.</li>
+          
+            <video width="520" height="240" autoplay controls>
+                <source src="video/Video de WhatsApp 2025-05-05 a las 18.16.27_fa24d10c.mp4">
+                </video>
+              
+                <video width="520" height="240" autoplay controls> 
+                <source src="video/Video de WhatsApp 2025-05-05 a las 18.38.41_e24b9a41.mp4">
+            </video>
+            </ul>
+        
+        </div>
+    </div>
+
+    
+    <div class="audio-player">
+        <div class="audio-controls">
+            <button id="playBtn">▶ Reproducir</button>
+            <button id="pauseBtn">⏸ Pausar</button>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+        </div>
+        <audio id="backgroundAudio" loop>
+            <source src="musica/audio.dat.unknown" type="audio/mpeg">
+           
+            <source src="musica/audio.dat.unknown" type="audio/ogg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </div>
+    <script>
+       
+        const buttons = {
+            btnQueSon: 'contenido-que-son',
+            btnImpacto: 'contenido-impacto',
+            btnVentaja: 'contenido-ventaja',
+            btnDesventaja: 'contenido-desventaja',
+            btnEducacion: 'contenido-educacion-trabajo'
+        };
+
+        
+        Object.keys(buttons).forEach(btnId => {
+            document.getElementById(btnId).addEventListener('click', function() {
+                
+                document.querySelectorAll('.opcion').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                this.classList.add('active');
+                
+                document.querySelectorAll('.contenido').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                const contentId = buttons[btnId];
+                document.getElementById(contentId).style.display = 'block';
+            });
+        });
+
+        const audio = document.getElementById('backgroundAudio');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const volumeControl = document.getElementById('volumeControl');
+
+        audio.volume = 0.3;
+
+        playBtn.addEventListener('click', () => {
+            audio.play().catch(e => {
+                console.error("Error al reproducir audio:", e);
+                alert("Hubo un error al reproducir el audio. Asegúrate de que el archivo existe y tiene el formato correcto.");
+            });
+            playBtn.disabled = true;
+            pauseBtn.disabled = false;
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            audio.pause();
+            playBtn.disabled = false;
+            pauseBtn.disabled = true;
+        });
+
+        volumeControl.addEventListener('input', () => {
+            audio.volume = volumeControl.value;
+        });
+
+        pauseBtn.disabled = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            audio.play().catch(e => {
+                console.log("Reproducción automática bloqueada. El usuario debe interactuar primero.");
+            });
+        });
+    </script>
+</body>
+</html>
